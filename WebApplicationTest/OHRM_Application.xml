@@ -1,0 +1,11 @@
+<suite name="OHRM_Application_Test">
+	<test name="LoginHome">
+		<classes>
+		    
+		    <class name="com.OHRM.WebApplicationTest.OHRM_LoginTest1"/>
+		    <class name="com.OHRM.WebApplicationTest.OHRM_LoginTest2">
+		    <include name="excelOperations"></include>
+		    </class>
+		</classes>
+	</test>
+</suite>

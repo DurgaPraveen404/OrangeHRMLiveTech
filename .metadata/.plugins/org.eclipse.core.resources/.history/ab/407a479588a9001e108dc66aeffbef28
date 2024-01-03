@@ -1,0 +1,53 @@
+package com.stepDefinition;
+
+import org.openqa.selenium.WebDriver;
+
+import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
+
+public class OrangeHRMOperations {
+	WebDriver driver;
+	String URL="http://127.0.0.1/orangehrm-4.2.0.1/symfony/web/index.php/auth/login";
+	public void OrangeHRMOperations(Hooks hook) {
+		
+	    driver=hook.cd;
+	}
+	@When("^user should be navigated to logIn page$")
+	public void user_should_be_navigated_to_logIn_page()  {
+		driver.get(URL);
+		driver.manage().window().maximize();
+	    
+	}
+
+	@Then("^user should validate the login page$")
+	public void user_should_validate_the_login_page() {
+	    
+	}
+
+	@Then("^user should enters the userName and Password and click on Login$")
+	public void user_should_enters_the_userName_and_Password_and_click_on_Login() {
+	    
+	}
+
+	@Then("^user should navigate to Home Page$")
+	public void user_should_navigate_to_Home_Page() {
+	   
+	}
+
+	@Then("^user should click on welcome Admin$")
+	public void user_should_click_on_welcome_Admin() {
+	   
+	}
+
+	@Then("^user should click on Logout button$")
+	public void user_should_click_on_Logout_button() {
+	    
+	}
+
+	@Then("^user should close the browser$")
+	public void user_should_close_the_browser() {
+	   
+	}
+	
+
+}

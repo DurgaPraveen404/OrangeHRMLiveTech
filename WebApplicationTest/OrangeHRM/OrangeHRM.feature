@@ -1,0 +1,19 @@
+Feature: OrangeHRM Login Functionality Test
+
+Background: Given user should open the browser in the system and Enter URL
+            #Then user should close the browser
+
+@LogInTest
+Scenario Outline: OrangeHRM LogIn test With single data
+When user should be navigated to logIn page
+Then user should validate the login page
+Then user should enters the "<Username>" and "<Password>" and click on Login
+Then user should navigate to Home Page
+Then user should click on welcome Admin
+Then user should click on Logout button
+Then user should be navigated to logIn page 
+
+Examples: 
+|	Username	|	Password		|
+| srini			|	hshsg345		|
+|	Praveen404|	Praveen@404	|

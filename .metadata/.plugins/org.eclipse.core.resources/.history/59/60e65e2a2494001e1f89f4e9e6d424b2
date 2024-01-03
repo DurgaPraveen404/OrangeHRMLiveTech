@@ -1,0 +1,26 @@
+package com.assignmentsOHRM;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class OHRM_Assignment_1 {
+
+	public static void main(String[] args) {
+		
+		// Launching the Browser
+		WebDriver driver;
+		System.setProperty("webdriver.chrome.driver","./WebDriverFiles/chromedriver.exe");
+		driver=new ChromeDriver();
+		
+		//Navigating to OrangeHRM URL
+		
+		String Ohrm_Url="http://127.0.0.1/orangehrm-4.2.0.1/symfony/web/index.php/auth/login";
+	    driver.get(Ohrm_Url);
+	    
+		
+		
+		
+
+	}
+
+}

@@ -1,0 +1,125 @@
+package com.assignmentsOHRM;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.concurrent.TimeUnit;
+
+import org.apache.commons.io.FileUtils;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class OHRM_Assignment_6_ {
+	public static void main(String[] args) throws IOException, InterruptedException {
+	
+
+		        // Launching the Browser
+				WebDriver driver;
+				System.setProperty("webdriver.chrome.driver","./WebDriverFiles/chromedriver.exe");
+				driver=new ChromeDriver();
+				
+				//Navigating to OrangeHRM URL
+				
+				String ohrm_Url="http://127.0.0.1/orangehrm-4.2.0.1/symfony/web/index.php/auth/validateCredentials";
+			    driver.get(ohrm_Url);
+			    driver.manage().window().maximize();
+			
+			    //Validating URL
+			    String FilePath="./src/OrangeHRM_MultipleSetData/OrangeHRM_Login_MultipleSetData.xlsx";
+				FileInputStream fis=new FileInputStream(FilePath);
+				XSSFWorkbook workbook=new XSSFWorkbook(fis);
+				XSSFSheet loginTestData=workbook.getSheet("OrangeHRM_LoginTestData");
+				int rowsCount=loginTestData.getLastRowNum();
+				
+				for(int rowIndex=1;rowIndex<=rowsCount;rowIndex++) {
+					
+					Row row=loginTestData.getRow(rowIndex);
+					String userNameData=row.getCell(0).toString();
+					String passwordData=row.getCell(1).toString();
+					//LogIn with Single Test Data
+				    By userNameElement=By.id("txtUsername");
+				    WebElement ohrmUserName=driver.findElement(userNameElement);
+				    ohrmUserName.sendKeys(userNameData);
+				    Thread.sleep(1000);
+				    By passWordElement=By.id("txtPassword");
+				    WebElement ohrmPassWord=driver.findElement(passWordElement);
+				    ohrmPassWord.sendKeys(passwordData);
+				    Thread.sleep(1000);
+				    By logInButton=By.id("btnLogin");
+				    WebElement ohrmLoginButton=driver.findElement(logInButton);
+				    ohrmLoginButton.click();
+				    try {
+				    By homePageWelcome=By.id("welcome");
+			 	    WebElement welcomeAdmin=driver.findElement(homePageWelcome);  
+			 	    if(welcomeAdmin.isDisplayed()) {
+			 	    	Cell newCell=row.createCell(2);
+				    	newCell.setCellValue("PASS");
+				    	driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS); 
+				 	    
+				 	    //Test Welcome Admin
+				 	    welcomeAdmin.click();
+				 	    
+				 	    //Test LogOut
+				 	    driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);  
+				 	    // Waits for some time to load the source code after 10 seconds it will search for element
+				 	    By ohrmLogout=By.linkText("Logout");
+				 	    WebElement logOutButton=driver.findElement(ohrmLogout);
+				 	    logOutButton.click();
+				 	    System.out.println();
+				 	   System.out.println(" LogOut from application");
+				 	   System.out.println();
+				 	    
+			 	    	
+			 	    }
+				    else {
+				 	  
+			    	    Cell newCell=row.createCell(2);
+			    	    newCell.setCellValue("FAIL");
+			    	    
+				 	    System.out.println();
+				 	    
+				 	    System.out.println();
+				    }
+				    }
+					catch(Exception e) {
+						System.out.println(e.getStackTrace());
+						 File screenShotImg=((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+							String filePath="./Screenshots/FailCase/"+userNameData+"_and_"+passwordData+"_AreInvalid"+".png";
+							FileUtils.copyFile(screenShotImg, new File(filePath));
+						
+					}
+			 	    
+				    Thread.sleep(1000);
+					
+				   
+				}
+				
+				
+				
+			    
+			    
+				FileOutputStream fos=new FileOutputStream(FilePath);
+				workbook.write(fos);
+
+			    
+			    
+			    // Closing the browser with Application
+			    driver.quit();
+			 
+
+
+		
+	}
+}
+
+
+

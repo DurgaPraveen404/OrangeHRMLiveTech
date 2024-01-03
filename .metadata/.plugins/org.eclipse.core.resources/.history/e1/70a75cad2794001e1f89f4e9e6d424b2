@@ -1,0 +1,68 @@
+package com.assignmentsOHRM;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class OHRM_Assignment_1 {
+
+	public static void main(String[] args) {
+		
+		// Launching the Browser
+		WebDriver driver;
+		System.setProperty("webdriver.chrome.driver","./WebDriverFiles/chromedriver.exe");
+		driver=new ChromeDriver();
+		
+		//Navigating to OrangeHRM URL
+		
+		String ohrm_Url="http://127.0.0.1/orangehrm-4.2.0.1/symfony/web/index.php/auth/login";
+	    driver.get(ohrm_Url);
+	    driver.manage().window().maximize();
+	    
+	    //Validating Title
+	    String ohrmExpectedTitle="OrangeHRM";
+	    String ohrmLogInActualTitle= driver.getTitle();
+	    if(ohrmExpectedTitle.equals(ohrmLogInActualTitle)) {
+	    	System.out.println("The Actual Title and Expected Titles are Matched:- PASS");
+	    }
+	    else {
+	    	System.out.println("The Actual Title and Expected Titles are Not Matched:- Fail");
+	    }
+	    
+	    //Validating URL
+	    String ohrmExpectedURL="orangehrm-4.2.0.1";
+	    String ohrmcurrentURL=driver.getCurrentUrl();
+	    if(ohrmcurrentURL.contains(ohrmExpectedURL)) {
+	    	System.out.println("The Current URL contains Expected URL:- PASS");
+	    }
+	    else {
+	    	System.out.println("The Current URL not contains Expected URL:- FAIL");
+	    }
+	    
+	    //Validating LOGIN PANEL Text
+	    String loginPageExpectedText="LOGIN Panel";
+	    WebElement loginPanel=driver.findElement(By.id("logInPanelHeading"));
+	    String loginPageActualText=loginPanel.getText();
+	    if(loginPageActualText.equals(loginPageExpectedText)) {
+	    	System.out.println("Login Page Actual and Expexted Text is Matched:- PASS");
+	    }
+	    else {
+	    	System.out.println("Login Page Actual and Expexted Text is not Matched:- FAIL");
+
+	    }
+	    
+	    //LogIn with Single Test Data
+	    WebElement ohrmUserName=driver.findElement(By.id("txtUsername"));
+	    ohrmUserName.
+	    
+	    
+	    
+	    
+		
+		
+		
+
+	}
+
+}

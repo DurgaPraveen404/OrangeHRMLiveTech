@@ -1,0 +1,23 @@
+package seleniumTest;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class SeleniumWindowhandles {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		WebDriver driver;
+		System.setProperty("webdriver.chrome.driver","./WebDriverFiles/chromedriver.exe");
+		driver=new ChromeDriver();
+		
+		//Navigating to OrangeHRM URL
+		
+		String ohrm_Url="http://127.0.0.1/orangehrm-4.2.0.1/symfony/web/index.php/auth/login";
+	    driver.get(ohrm_Url);
+	    driver.manage().window().maximize();
+	    System.out.println(driver.getWindowHandle());
+	}
+
+}

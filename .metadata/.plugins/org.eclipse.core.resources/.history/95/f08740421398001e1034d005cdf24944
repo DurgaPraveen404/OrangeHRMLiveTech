@@ -1,0 +1,25 @@
+package com.assignmentsOHRM;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
+public class OHRM_Assignment_3_MultipleSetData {
+
+	public static void main(String[] args) throws IOException {
+		String FilePath="./src/OrangeHRM_MultipleSetData/OrangeHRM_Login_MultipleSetData.xlsx";
+		
+		
+		FileOutputStream fos=new FileOutputStream(FilePath);
+		FileInputStream fis=new FileInputStream(FilePath);
+		XSSFWorkbook workbook=new XSSFWorkbook(fis);
+		XSSFSheet loginTestData=workbook.createSheet("OrangeHRM_LoginTestData");
+		workbook.write(fos);
+
+	}
+
+}

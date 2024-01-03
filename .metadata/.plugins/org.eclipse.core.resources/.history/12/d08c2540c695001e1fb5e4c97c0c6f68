@@ -1,0 +1,48 @@
+package seleniumTest;
+
+import java.util.List;
+import java.util.Set;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class SeleniumWindowhandles {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		WebDriver driver;
+		System.setProperty("webdriver.chrome.driver","./WebDriverFiles/chromedriver.exe");
+		driver=new ChromeDriver();
+		
+		//Navigating to OrangeHRM URL
+		
+		String ohrm_Url="http://127.0.0.1/orangehrm-4.2.0.1/symfony/web/index.php/auth/login";
+	    driver.get(ohrm_Url);
+	    driver.manage().window().maximize();
+	    //System.out.println(driver.getWindowHandle());
+	    By Sociallinksproperty=By.id("social-icons");
+	    By Sociallinkspropertys=By.tagName("a");
+	    WebElement loginPanel=driver.findElement(Sociallinksproperty);
+	    List<WebElement>SocialLinks=loginPanel.findElements(Sociallinkspropertys);
+	    SocialLinks.get(0).click();
+	    SocialLinks.get(1).click();
+	    SocialLinks.get(2).click();
+	    SocialLinks.get(3).click();
+	    String parentwindow=driver.getWindowHandle();
+	    Set<String> windowhandles=driver.getWindowHandles();
+	    for (String windowhandle : windowhandles) {
+	    	if(!windowhandle.equals(parentwindow)) {
+	    		driver.switchTo().window(windowhandle);
+	    		break;
+	    	}
+			System.out.println(windowhandle);
+		}
+	    
+	    
+	    
+	}
+
+}

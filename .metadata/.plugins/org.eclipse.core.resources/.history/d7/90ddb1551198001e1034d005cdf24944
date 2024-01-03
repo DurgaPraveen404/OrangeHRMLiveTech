@@ -1,0 +1,14 @@
+package com.assignmentsOHRM;
+
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+
+public class OHRM_Assignment_3_MultipleSetData {
+
+	public static void main(String[] args) throws FileNotFoundException {
+		
+		FileOutputStream fos=new FileOutputStream("/src/OrangeHRM_MultipleSetData/OrangeHRM_Login_MultipleSetData.xlsx");
+
+	}
+
+}

@@ -1,0 +1,42 @@
+package automationFramework;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+
+public class dragAndDropOperation {
+	WebDriver driver;
+	
+	String URL="https://jqueryui.com/droppable/";
+	public void browserLaunch() {
+		System.setProperty("webdriver.chrome.driver","./WebDriverFiles/chromedriver.exe");
+		driver=new ChromeDriver();
+		driver.get(URL);
+		driver.manage().window().maximize();
+	}
+	public void dragAndDrop() {
+		By frameProperty=By.id("demo-frame");
+		WebElement frame=driver.findElement(frameProperty);
+		driver.switchTo().frame(frame);
+		By dragProperty=By.id("draggable");
+		WebElement dragMeToTarget=driver.findElement(dragProperty);
+		By dropProperty=By.id("droppable");
+		WebElement dropHere=driver.findElement(dropProperty);
+		Actions action=new Actions(driver);
+		action.dragAndDrop(dragMeToTarget, dropHere).build().perform();
+		
+		
+		
+	}
+
+	public static void main(String[] args) {
+		dragAndDropOperation draganddrop=new dragAndDropOperation();
+		draganddrop.browserLaunch();
+		draganddrop.dragAndDrop();
+		
+
+	}
+
+}

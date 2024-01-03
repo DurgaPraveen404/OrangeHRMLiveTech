@@ -1,0 +1,50 @@
+package com.assignmentsOHRM;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class OHRM_Assignment_1 {
+
+	public static void main(String[] args) {
+		
+		// Launching the Browser
+		WebDriver driver;
+		System.setProperty("webdriver.chrome.driver","./WebDriverFiles/chromedriver.exe");
+		driver=new ChromeDriver();
+		
+		//Navigating to OrangeHRM URL
+		
+		String ohrm_Url="http://127.0.0.1/orangehrm-4.2.0.1/symfony/web/index.php/auth/login";
+	    driver.get(ohrm_Url);
+	    driver.manage().window().maximize();
+	    
+	    //Validating Title
+	    String ohrm_Expected_Title="OrangeHRM";
+	    String ohrmLogIN_ActualTitle= driver.getTitle();
+	    if(ohrm_Expected_Title.equals(ohrmLogIN_ActualTitle)) {
+	    	System.out.println("The Actual and Expected Titles are Matched:- PASS");
+	    }
+	    else {
+	    	System.out.println("The Actual and Expected Titles are Not Matched:- Fail");
+	    }
+	    
+	    //Validating URL
+	    String ohrm_ExpectedURL="orangehrm-4.2.0.1";
+	    String ohrm_currentURL=driver.getCurrentUrl();
+	    if(ohrm_currentURL.contains(ohrm_ExpectedURL)) {
+	    	System.out.println("The Current URL contains Expected URL:- PASS");
+	    }
+	    else {
+	    	System.out.println("The Current URL not contains Expected URL:- FAIL");
+	    }
+	    
+	    
+	    
+		
+		
+		
+
+	}
+
+}

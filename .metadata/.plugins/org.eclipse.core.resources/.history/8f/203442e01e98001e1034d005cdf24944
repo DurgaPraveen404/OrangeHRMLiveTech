@@ -1,0 +1,191 @@
+package com.assignmentsOHRM;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.concurrent.TimeUnit;
+
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+
+public class OHRM_Assignment_3_MultipleSetData {
+
+	public static void main(String[] args) throws IOException, InterruptedException {
+		
+		
+		
+		// Launching the Browser
+				WebDriver driver;
+				System.setProperty("webdriver.chrome.driver","./WebDriverFiles/chromedriver.exe");
+				driver=new ChromeDriver();
+				
+				//Navigating to OrangeHRM URL
+				
+				String ohrm_Url="http://127.0.0.1/orangehrm-4.2.0.1/symfony/web/index.php/auth/login";
+			    driver.get(ohrm_Url);
+			    driver.manage().window().maximize();
+			    
+			    //Validating Title
+			    String ohrmExpectedTitle="OrangeHRM";
+			    String ohrmLogInActualTitle= driver.getTitle();
+			    
+			    System.out.println(ohrmLogInActualTitle);
+			    if(ohrmExpectedTitle.equals(ohrmLogInActualTitle)) {
+			    	System.out.println("The Actual Title and Expected Titles are Matched:- PASS");  
+			    }
+			    else {
+			    	System.out.println("The Actual Title and Expected Titles are Not Matched:- Fail");
+			    }
+			    
+			    //Validating URL
+			    String ohrmExpectedURL="orangehrm-4.2.0.1";
+			    String ohrmcurrentURL=driver.getCurrentUrl();
+			    System.out.println(ohrmcurrentURL);
+			    if(ohrmcurrentURL.contains(ohrmExpectedURL)) {
+			    	System.out.println("The Current URL contains Expected URL:- PASS");
+			    }
+			    else {
+			    	System.out.println("The Current URL not contains Expected URL:- FAIL");
+			    }
+			    
+			    //Validating LOGIN PANEL Text
+			    String loginPageExpectedText="LOGIN Panel";
+			    By logInPanelHeading=By.id("logInPanelHeading");
+			    WebElement loginPanel=driver.findElement(logInPanelHeading);
+			    String loginPageActualText=loginPanel.getText();
+			    System.out.println(loginPageActualText);
+			    if(loginPageActualText.equals(loginPageExpectedText)) {
+			    	
+			    	System.out.println("Login Page Actual Text with Expexted Text is Matched:- PASS");
+			    	
+			    }
+			    else {
+			    	
+			    	System.out.println("Login Page Actual Text with Expexted Text is not Matched:- FAIL");
+
+			    }
+			    
+			    String FilePath="./src/OrangeHRM_MultipleSetData/OrangeHRM_Login_MultipleSetData.xlsx";
+				FileInputStream fis=new FileInputStream(FilePath);
+				XSSFWorkbook workbook=new XSSFWorkbook(fis);
+				XSSFSheet loginTestData=workbook.getSheet("OrangeHRM_LoginTestData");
+				int rowsCount=loginTestData.getLastRowNum();
+				for(int rowIndex=0;rowIndex<rowsCount;rowIndex++) {
+					Row row=loginTestData.getRow(rowIndex);
+					String userNameData=row.getCell(0).toString();
+					String passwordData=row.getCell(1).toString();
+			    
+			    //LogIn with Single Test Data
+			    By userNameElement=By.id("txtUsername");
+			    WebElement ohrmUserName=driver.findElement(userNameElement);
+			    ohrmUserName.sendKeys(userNameData);
+			    Thread.sleep(3000);
+			    By passWordElement=By.id("txtPassword");
+			    WebElement ohrmPassWord=driver.findElement(passWordElement);
+			    ohrmPassWord.sendKeys(passwordData);
+			    Thread.sleep(3000);
+			    By logInButton=By.id("btnLogin");
+			    WebElement ohrmLoginButton=driver.findElement(logInButton);
+			    ohrmLoginButton.click();
+			    Thread.sleep(3000);
+				}
+			    
+			    //Validating OHRM Home Page
+			    String ohrmHomePageExpectedText="Welcome";
+			    By homePageWelcome=By.id("welcome");
+			    WebElement welcomeAdmin=driver.findElement(homePageWelcome);     //xpath("//a[@id='welcome']") 
+			                                                                         //OR  
+			                                                                     //WebElement welcomeAdmin=driver.findElement(By.linkText("Welcome Admin"))
+			    String ohrmHomePageActualText= welcomeAdmin.getText();
+			    System.out.println(ohrmHomePageActualText);
+			    if(ohrmHomePageActualText.contains(ohrmHomePageExpectedText)) {
+			    	System.out.println("The Result home page contains text Welcome:- PASS");
+			    }
+			    else {
+			    	System.out.println("The Result home page not contains text Welcome:- FAIL");
+			    }
+			    
+			    
+			    //Test Welcome Admin
+			    welcomeAdmin.click();
+			    
+			    
+			    //Test LogOut
+			    driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);  
+			    // Waits for some time to load the source code after 10 seconds it will search for element
+			    By ohrmLogout=By.linkText("Logout");
+			    WebElement logOutButton=driver.findElement(ohrmLogout);
+			    logOutButton.click();
+			    
+			    System.out.println();
+			    System.out.println("After LogOut from application");
+			    System.out.println();
+			    
+			    
+			    //Again Validating LogIn page
+			    //Validating Title
+			    String ohrmLogIn_2_ActualTitle= driver.getTitle();
+			    System.out.println(ohrmLogIn_2_ActualTitle);
+			    if(ohrmExpectedTitle.equals(ohrmLogIn_2_ActualTitle)) {
+			    	System.out.println("The Actual Title and Expected Titles are Matched:- PASS");
+			    }
+			    else {
+			    	System.out.println("The Actual Title and Expected Titles are Not Matched:- Fail");
+			    }
+			    
+			    //Validating URL
+			    String ohrmcurrentURLAgain=driver.getCurrentUrl();
+			    System.out.println(ohrmcurrentURLAgain);
+			    if(ohrmcurrentURLAgain.contains(ohrmExpectedURL)) {
+			    	System.out.println("The Current URL contains Expected URL:- PASS");
+			    }
+			    else {
+			    	System.out.println("The Current URL not contains Expected URL:- FAIL");
+			    }
+			    
+			    //Validating LOGIN PANEL Text
+			    By logInPanelHeadingAgain=By.id("logInPanelHeading");
+			    WebElement finalLoginPanel=driver.findElement(logInPanelHeadingAgain);
+			    String loginPageActualTextAgain=finalLoginPanel.getText();
+			    System.out.println(loginPageActualTextAgain);
+			    if(loginPageActualTextAgain.equals(loginPageExpectedText)) {
+			    	System.out.println("Login Page Actual and Expexted Text is Matched:- PASS");
+			    }
+			    else {
+			    	System.out.println("Login Page Actual and Expexted Text is not Matched:- FAIL");
+
+			    }
+			    
+			    
+			    
+			    // Closing the browser with Application
+			    driver.quit();
+			    
+		
+		
+			
+		
+			
+				
+				
+				}
+				
+			}
+		}
+		
+		
+		
+		
+
+
+
+

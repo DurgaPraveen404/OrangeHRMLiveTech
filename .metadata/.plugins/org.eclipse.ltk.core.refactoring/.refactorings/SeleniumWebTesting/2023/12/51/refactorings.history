@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;WebTable_CityNames.xlsx&apos; to &apos;OrangeHRM/src/OrangeHRM_MultipleSetData&apos;&#x0D;&#x0A;- Original project: &apos;SeleniumWebTesting&apos;&#x0D;&#x0A;- Destination element: &apos;OrangeHRM/src/OrangeHRM_MultipleSetData&apos;&#x0D;&#x0A;- Original element: &apos;WebTable_CityNames.xlsx&apos;" description="Copy file" destination="=OrangeHRM/src&lt;OrangeHRM_MultipleSetData" element1="src/ExcelFile/WebTable_CityNames.xlsx" files="1" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1702917914437" units="0" version="1.0"/>
+</session>

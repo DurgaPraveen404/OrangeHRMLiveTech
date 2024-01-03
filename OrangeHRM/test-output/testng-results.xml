@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2023-12-27T17:38:42 IST" name="Default suite" finished-at="2023-12-27T17:39:14 IST" duration-ms="31862">
+    <groups>
+    </groups>
+    <test started-at="2023-12-27T17:38:42 IST" name="Default test" finished-at="2023-12-27T17:39:14 IST" duration-ms="31862">
+      <class name="com.OHRM_Test_WithExcel.OHRM_LoginTest2">
+        <test-method is-config="true" signature="browserLaunch()[pri:0, instance:com.OHRM_Test_WithExcel.OHRM_LoginTest2@5d7148e2]" started-at="2023-12-27T17:38:42 IST" name="browserLaunch" finished-at="2023-12-27T17:38:44 IST" duration-ms="2491" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- browserLaunch -->
+        <test-method signature="excelOperations()[pri:0, instance:com.OHRM_Test_WithExcel.OHRM_LoginTest2@5d7148e2]" started-at="2023-12-27T17:38:44 IST" name="excelOperations" finished-at="2023-12-27T17:39:13 IST" duration-ms="28666" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- excelOperations -->
+        <test-method is-config="true" signature="applicationClose()[pri:0, instance:com.OHRM_Test_WithExcel.OHRM_LoginTest2@5d7148e2]" started-at="2023-12-27T17:39:13 IST" name="applicationClose" finished-at="2023-12-27T17:39:14 IST" duration-ms="660" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- applicationClose -->
+      </class> <!-- com.OHRM_Test_WithExcel.OHRM_LoginTest2 -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>

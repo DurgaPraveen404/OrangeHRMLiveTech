@@ -1,0 +1,38 @@
+package com.assignmentsOHRM;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
+public class OHRM_Assignment_3_MultipleSetData {
+
+	public static void main(String[] args) throws IOException {
+		String FilePath="./src/OrangeHRM_MultipleSetData/OrangeHRM_Login_MultipleSetData.xlsx";
+		FileInputStream fis=new FileInputStream(FilePath);
+		XSSFWorkbook workbook=new XSSFWorkbook(fis);
+		XSSFSheet loginTestData=workbook.getSheet("OrangeHRM_LoginTestData");
+		int rowsCount=loginTestData.getLastRowNum();
+		for(int rowIndex=0;rowIndex<rowsCount;rowIndex++) {
+			Row row=loginTestData.getRow(rowIndex);
+			int cellCount=loginTestData.getRow(rowIndex).getLastCellNum();
+			for(int cellIndex=0;cellIndex<cellCount;cellIndex++) {
+				Cell rowOfCell=row.getCell(cellIndex);
+				String UserNameData=rowOfCell.getStringCellValue();
+				System.out.println(UserNameData);
+			}
+		}
+		
+		
+		
+		
+
+	}
+
+}
